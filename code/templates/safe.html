@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="language" content="fr-fr" />    
+    <link rel="shortcut icon" href="cisco.jpg" type="image/x-icon" />     
+    <link rel="stylesheet" type="text/css" href="main.css" />  
+<title>Portail d'acces au lab</title>
+    <script type="text/javascript" src="/static/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/static/jquery/jquery.maphilight.js"></script>
+	<script type="text/javascript">$(function() {
+		$('.map').maphilight({fade: false});
+	});</script>
+   <script language='javascript'>
+    function popup_window( url, id, width, height )
+    {
+       //extract the url parameters if any, and pass them to the called html
+       var tempvar=document.location.toString(); // fetch the URL string
+       var passedparams = tempvar.lastIndexOf("?");
+       if(passedparams > -1)
+          url += tempvar.substring(passedparams);
+      popup = window.open( url, id, 'toolbar=no,scrollbars=yes,location=no,statusbar=no,menubar=no,resizable=no,width=' + width + ',height=' + height + '' );
+      popup.focus();
+    }    
+  </script>   
+    </head>
+    
+<body>
+<a href="javascript:popup_window('check', 'hacker_console', 600, 400);">check SecureX</a>
+<div class="container" id="page">				
+	<div id="content">
+<form id="yw0">       
+        </div>
+</form>
+            
+<div align="center">
+            <p style="align:center"><img class="map" align="center" src="/static/lab_network.jpg" usemap="#map"/></p>
+<map name="map">	
+
+    <AREA SHAPE=RECT COORDS="34,90,90,138" HREF="javascript:popup_window('hacker', 'hacker_console', 600, 400);">
+    <AREA SHAPE=RECT COORDS="792,231,824,278" HREF="javascript:popup_window('chose', 'hacker_console', 600, 400);">    
+</map>
+            </div>
+</div>
+<script>
+let timer=1;
+setInterval(() => {
+    timer++;
+    if(timer >5)
+    location.reload();                            
+}, 1000);
+</script>
+</body>
+</html>
