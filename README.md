@@ -8,6 +8,15 @@ This is actually a tiny web server that listen on http port 4000.
 
 Create a working directory into your laptop. Open a terminal window into it.
 
+### Clone the scripts
+
+You must have a git client installed into your laptop. Then you can type the following command
+
+	git https://github.com/pcardotatgit/lab_simulator-001.git
+	cd lab_simulator-001-main\code
+	
+If you don't have a git client, then just download the zip package from the github repository and unzip it into your working directory.
+
 ### Create a Python virtual environment
 
 For Linux/Mac 
@@ -16,31 +25,18 @@ For Linux/Mac
 	source bin activate
 
 For Windows 
-	
-We assume that you already have installed git-bash.  If so open a git-bash console and type the 2 following commands :
 
 	python -m venv venv 
 	venv/Scripts/activate
 
-### clone the scripts
-
-	git https://github.com/pcardotatgit/lab_simulator-001.git
-	cd lab_simulator-001
-	
 ### install needed modules
 
-The scripts need the following python modules
-
-- requests
-- flask
-- crayons
-	
 you can install them with the following  :
 	
 	python -m pip install --upgrade pip
 	pip install -r requirements.txt
 
-## Start the simulator
+### Start the simulator
 
 	python app.py
 
