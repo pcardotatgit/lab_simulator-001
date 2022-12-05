@@ -4,13 +4,13 @@ This lab simulator is a python flask application that simulate endpoint infectio
 
 This is actually a tiny web server that listen on http port 4000. This one is supposed to be installer into your laptop.
 
-The simulator exposes a Web GUI that is a network diagram we can interact with. And it manages interaction with your SecureX teanant.
+The simulator exposes a Web GUI that is a network diagram we can interact with. The simulator manages interaction with your SecureX tenant as well.
 
 ![](assets/img/0.png)
 
-This interface simulate an endpoint infection which create incidents and sightings into your SecureX Tenant. Exactly like what happen in real infections.
+This GUI simulates an endpoint infection which create incidents and sightings into your SecureX Tenant. Exactly like what happen with real infections. The same alerts are created within SecureX.
 
-The goal is to showcase endpoint infection without doing it with real attacks and malwares.
+The goal is to showcase endpoint infection safely without doing it with real attacks and malwares.
 
 ## Installation
 
