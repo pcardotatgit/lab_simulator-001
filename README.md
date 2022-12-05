@@ -6,7 +6,7 @@ This is actually a tiny web server that listen on http port 4000. This one is su
 
 The simulator exposes a Web GUI that is a network diagram we can interact with. And it manages interaction with your SecureX teanant.
 
-![](assets/img/1.png)
+![](assets/img/0.png)
 
 This interface simulate an endpoint infection which create incidents and sightings into your SecureX Tenant. Exactly like what happen in real infections.
 
