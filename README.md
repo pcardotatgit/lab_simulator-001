@@ -30,7 +30,7 @@ If you don't have a git client, then just download the zip package from the gith
 For Linux/Mac 
 
 	python3 -m venv venv
-	source bin activate
+	source /bin/activate
 
 For Windows 
 
