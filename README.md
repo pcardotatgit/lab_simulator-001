@@ -20,7 +20,7 @@ Create a working directory into your laptop. Open a terminal window into it.
 
 You must have a git client installed into your laptop. Then you can type the following command
 
-	git https://github.com/pcardotatgit/lab_simulator-001.git
+	git clone https://github.com/pcardotatgit/lab_simulator-001.git
 	cd lab_simulator-001-main\code
 	
 If you don't have a git client, then just download the zip package from the github repository and unzip it into your working directory.
