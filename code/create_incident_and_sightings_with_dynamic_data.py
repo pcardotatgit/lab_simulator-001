@@ -1,5 +1,6 @@
 '''
     Create a bundle incident + sightings + relationship
+    v20221209
 '''
 import requests
 import json
@@ -76,6 +77,8 @@ def get_ctr_token(host_for_token):
     fa.close()
     return (token[1])
 
+
+    
 def current_date_time():
     current_time = datetime.utcnow()
     current_time = current_time.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
@@ -107,7 +110,7 @@ def create_event_bunble_json():
     incident_short_description="Infection example for PVT Lab"
     time=current_date_time_simple()
     incident_title="PVT Endpoint Infection demo"    
-    incident_description=f"| Incident Title | LAPTOP SEVERE INFECTION |\n| - | - |\n| Promoted at | {time} UTC |\n| Promotion method | Automated |\n| Indicators | **Possible Powershell Post-Exploitation Loader**: Several PowerShell-based post exploitation frameworks such as PowerShell Empire and CobaltStrike loaders decode and run byte code in memory, which is often also compressed and base64-encoded. A PowerShell command similar to such frameworks was executed. |\n| MITRE Tactics | [TA0005](https://attack.mitre.org/tactics/TA0005): Defense Evasion<br>[TA0002](https://attack.mitre.org/tactics/TA0002): Execution |\n| MITRE Techniques | [T1059.001](https://attack.mitre.org/techniques/T1059/001): PowerShell |\n| Host name | Patrick_Laptop |\n| GUID | 57150e86-fcbe-47ff-8bc7-3f297d473b79 |\n| Operating System | Windows 8.1 Connected (Build 9600.19893) |\n| Group | Patrick_Group |\n| Policy | Audit_Patrick |\n| Internal IP | 192.168.128.137 |\n| External IP | 10.0.0.76 |\n"
+    incident_description=f"| Incident Title | LAPTOP SEVERE INFECTION |\n| - | - |\n| Promoted at | {time} UTC |\n| Promotion method | Automated |\n| Indicators | **Possible Powershell Post-Exploitation Loader**: Several PowerShell-based post exploitation frameworks such as PowerShell Empire and CobaltStrike loaders decode and run byte code in memory, which is often also compressed and base64-encoded. A PowerShell command similar to such frameworks was executed. |\n| MITRE Tactics | [TA0005](https://attack.mitre.org/tactics/TA0005): Defense Evasion<br>[TA0002](https://attack.mitre.org/tactics/TA0002): Execution |\n| MITRE Techniques | [T1059.001](https://attack.mitre.org/techniques/T1059/001): PowerShell |\n| Host name | Victim Laptop |\n| GUID | 57150e86-fcbe-47ff-8bc7-3f297d473b79 |\n| Operating System | Windows 10 Connected (Build 9600.19893) |\n| Group | Protect_Group |\n| Policy | Protect_Policy |\n| Internal IP | 192.168.0.137 |\n| External IP | 84.48.25.16 |\n"
     incident_source_uri='https://console.eu.amp.cisco.com/computers/57150e86-fcbe-47ff-8bc7-3f297d473b79/trajectory2'
     incident_confidence="High"   
     discovery_method="Automated detection by Secure Endpoint"
@@ -159,15 +162,15 @@ def create_event_bunble_json():
                         ]
                     },
                 "observables":[
-                        {"type":"ip","value":"13.67.68.224"}
+                        {"type":"ip","value":"91.109.190.8"}
                     ],
                 "relations":[
-                        {"source":{"type":"ip","value":"13.67.68.224"},"related":{"type":"ip","value":"10.0.0.76"},"relation":"Connected_To","origin":"Sensor XYZ"}
+                        {"source":{"type":"ip","value":"91.109.190.8"},"related":{"type":"ip","value":"84.48.25.16"},"relation":"Connected_To","origin":"Sensor XYZ"}
                     ],
                 "targets":[
                     {"type":target,
                     "observables":[
-                        {"type":"ip","value":"10.0.0.76"}
+                        {"type":"ip","value":"84.48.25.16"}
                         ],
                         "observed_time":
                         {"start_time":current_date_time()}
@@ -208,7 +211,7 @@ def create_event_bunble_json2():
     incident_short_description="Infection example for PVT Lab"
     time=current_date_time_simple()
     incident_title="PVT Endpoint Infection demo OTHER"    
-    incident_description=f"| Incident Title | LAPTOP SEVERE INFECTION |\n| - | - |\n| Promoted at | {time} UTC |\n| Promotion method | Automated |\n| Indicators | **Possible Powershell Post-Exploitation Loader**: Several PowerShell-based post exploitation frameworks such as PowerShell Empire and CobaltStrike loaders decode and run byte code in memory, which is often also compressed and base64-encoded. A PowerShell command similar to such frameworks was executed. |\n| MITRE Tactics | [TA0005](https://attack.mitre.org/tactics/TA0005): Defense Evasion<br>[TA0002](https://attack.mitre.org/tactics/TA0002): Execution |\n| MITRE Techniques | [T1059.001](https://attack.mitre.org/techniques/T1059/001): PowerShell |\n| Host name | Patrick_Laptop |\n| GUID | 57150e86-fcbe-47ff-8bc7-3f297d473b79 |\n| Operating System | Windows 8.1 Connected (Build 9600.19893) |\n| Group | Patrick_Group |\n| Policy | Audit_Patrick |\n| Internal IP | 192.168.128.137 |\n| External IP | 10.0.0.76 |\n"
+    incident_description=f"| Incident Title | LAPTOP SEVERE INFECTION |\n| - | - |\n| Promoted at | {time} UTC |\n| Promotion method | Automated |\n| Indicators | **Possible Powershell Post-Exploitation Loader**: Several PowerShell-based post exploitation frameworks such as PowerShell Empire and CobaltStrike loaders decode and run byte code in memory, which is often also compressed and base64-encoded. A PowerShell command similar to such frameworks was executed. |\n| MITRE Tactics | [TA0005](https://attack.mitre.org/tactics/TA0005): Defense Evasion<br>[TA0002](https://attack.mitre.org/tactics/TA0002): Execution |\n| MITRE Techniques | [T1059.001](https://attack.mitre.org/techniques/T1059/001): PowerShell |\n| Host name | Patrick_Laptop |\n| GUID | 57150e86-fcbe-47ff-8bc7-3f297d473b79 |\n| Operating System | Windows 8.1 Connected (Build 9600.19893) |\n| Group | Patrick_Group |\n| Policy | Audit_Patrick |\n| Internal IP | 192.168.0.137 |\n| External IP | 84.48.25.16 |\n"
     incident_source_uri='https://console.eu.amp.cisco.com/computers/57150e86-fcbe-47ff-8bc7-3f297d473b79/trajectory2'
     incident_confidence="High"   
     discovery_method="Automated detection by Secure Endpoint"
@@ -261,15 +264,15 @@ def create_event_bunble_json2():
                         ]
                     },
                 "observables":[
-                        {"type":"ip","value":"13.67.68.224"}
+                        {"type":"ip","value":"91.109.190.8"}
                     ],
                 "relations":[
-                        {"source":{"type":"ip","value":"13.67.68.224"},"related":{"type":"ip","value":"10.0.0.76"},"relation":"Connected_To","origin":"Sensor XYZ"}
+                        {"source":{"type":"ip","value":"91.109.190.8"},"related":{"type":"ip","value":"84.48.25.16"},"relation":"Connected_To","origin":"Sensor XYZ"}
                     ],
                 "targets":[
                     {"type":target,
                     "observables":[
-                        {"type":"ip","value":"10.0.0.76"}
+                        {"type":"ip","value":"84.48.25.16"}
                         ],
                         "observed_time":
                         {"start_time":current_date_time()}
@@ -364,16 +367,16 @@ def add_sighting_to_incident_bunble_json():
                     },
                 "observables":[
                         {"type":"sha256","value":"6f88fb88ffb0f1d5465c2826e5b4f523598b1b8378377c8378ffebc171bad18b"},
-                        {"type":"sha256","value":"840e1f9dc5a29bebf01626822d7390251e9cf05bb3560ba7b68bdb8a41cf08e3"}
+                        {"type":"sha256","value":"54c0cd40ea153f2b8cdc27c1b1baf96d77505807bda9979f2ba9ccb7ff0db3ed"}
                     ],
                 "targets":[
                     {"type":"endpoint",
                     "observables":[
-                        {"type":"ip","value":"10.0.0.76"},
+                        {"type":"ip","value":"84.48.25.16"},
                         {"type":"hostname","value":"Victim Endpoint"},
                         {"type":"amp_computer_guid","value":"57150e86-fcbe-47ff-8bc7-3f297d473b79"},
                         {"type":"hostname","value":"Victim Endpoint"},
-                        {"type":"ip","value":"192.168.128.137"}
+                        {"type":"ip","value":"192.168.0.137"}
                         ],
                         "observed_time":
                         {"start_time":current_date_time()}

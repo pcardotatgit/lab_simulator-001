@@ -7,6 +7,7 @@ import sys
 # - check if token stored into config.py
 ctr_client_id=conf.ctr_client_id
 ctr_client_password=conf.ctr_client_password
+host_for_token=conf.host_for_token
 
 def read_api_keys(service):   
     # read API credentials from an external file on this laptop ( API keys are not shared with the flask application )
@@ -41,7 +42,7 @@ def read_api_keys(service):
         return(access_token)
         
 if __name__=='__main__':
-    url = 'https://visibility.eu.amp.cisco.com/iroh/oauth2/token'
+    url = f'{host_for_token}/iroh/oauth2/token'
     headers = {'Content-Type':'application/x-www-form-urlencoded', 'Accept':'application/json'}
     payload = {'grant_type':'client_credentials'}
     client_id,client_password=read_api_keys('ctr') 

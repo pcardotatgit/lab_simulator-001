@@ -1,5 +1,7 @@
 '''
- Get all incidents in your private intelligence
+ Get all judgements in your private intelligence from a specific source ( see source_to_select variable line 11 )
+ 
+ and store results into output text files
 '''
 import requests
 import json
@@ -9,18 +11,21 @@ import config as conf
 host = conf.host
 item_list=[]
 
+source_to_select="securex-orchestration"  # exact source name to filter
+
+
 def get(host,access_token,url,offset,limit):    
     headers = {'Authorization':'Bearer {}'.format(access_token), 'Content-Type':'application/json', 'Accept':'application/json'}
     url = f"{host}{url}?limit={limit}&offset={offset}"
     response = requests.get(url, headers=headers)
     return response
 
-def get_incidents(access_token):
-    fb = open("z_json_incidents_list.json", "w")
-    fd = open("z_incidents_id_list.txt", "w")
+def get_judgments(access_token):
+    fb = open("z_json_judgements_list.json", "w")
+    fd = open("z_judgements_id_list.txt", "w")
     json_output='[\n'
-    fc = open("z_incidents_list.txt", "w")
-    url = "/ctia/incident/search"
+    fc = open("z_judgment_list.txt", "w")
+    url = "/ctia/judgement/search"
     offset=0
     limit=1000
     go=1 # used to stop the loop   
@@ -32,15 +37,19 @@ def get_incidents(access_token):
         items=response.json()
         for item in items: 
             index+=1
-            print(yellow(item,bold=True))
-            item_list.append(item)
-            #fb.write(json.dumps(item))
-            #fb.write(',\n')
-            json_output+=json.dumps(item)
-            json_output+=',\n'
-            fc.write('\n')   
-            fd.write(item['id'])
-            fd.write('\n')             
+            if item['source']==source_to_select:
+                print(yellow(item,bold=True))
+                item_list.append(item)
+                #fb.write(json.dumps(item))
+                #fb.write(',\n')
+                json_output+=json.dumps(item)
+                json_output+=',\n'
+                ip=item['observable']['value']    
+                print(red(ip,bold=True))
+                fc.write(ip)
+                fc.write('\n')   
+                fd.write(item['id'])
+                fd.write('\n')             
         if index>=limit-1:
             go=1
             offset+=index-1
@@ -57,7 +66,7 @@ def main():
     fa = open("ctr_token.txt", "r")
     access_token = fa.readline()
     fa.close()   
-    get_incidents(access_token)
+    get_judgments(access_token)
 
 if __name__ == "__main__":
     main()
