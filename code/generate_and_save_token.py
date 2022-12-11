@@ -1,3 +1,4 @@
+# version 20221211
 import requests
 import time
 import config as conf
@@ -10,6 +11,8 @@ host_for_token=conf.host_for_token
 
 def read_api_keys(service):   
     # read API credentials from an external file on this laptop ( API keys are not shared with the flask application )
+    global ctr_client_id
+    global ctr_client_password
     if service=="webex":
         with open('../keys/webex_keys.txt') as creds:
             text=creds.read()
@@ -46,8 +49,11 @@ def ask_for_ctr_token():
     headers = {'Content-Type':'application/x-www-form-urlencoded', 'Accept':'application/json'}
     payload = {'grant_type':'client_credentials'}
     client_id,client_password=read_api_keys('ctr') 
-    print(client_id)
-    print(client_password)   
+    print()
+    print(url)
+    print("client_id : ",client_id)
+    print("client_password :",client_password)  
+    print()    
     #sys.exit()
     response = requests.post(url, headers=headers, auth=(client_id, client_password), data=payload)
     print()

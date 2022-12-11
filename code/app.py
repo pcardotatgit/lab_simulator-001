@@ -1,4 +1,4 @@
-# version 20221210
+# version 20221211
 from flask import Flask, flash, redirect, render_template, request, session, abort, send_file
 import os
 from create_incident_and_sightings_with_dynamic_data import create_incident_with_sightings
@@ -11,6 +11,9 @@ import threading
 import time
 
 host=conf.host
+ctr_client_id=conf.ctr_client_id
+ctr_client_password=conf.ctr_client_password
+
 hacked=0
 
 def open_browser_tab(host, port):
@@ -48,10 +51,12 @@ def parse_config(text_content):
             conf_result[3]=conf_result[3].replace('"','')   
         elif 'webex_bot_token' in line:
             conf_result[5]=line.split('=')[1]
-            conf_result[5]=conf_result[5].replace('"','')    
+            conf_result[5]=conf_result[5].replace('"','') 
+            conf_result[5]=conf_result[5].replace("'","")
         elif 'webex_room_id' in line:
-            conf_result[4]=line.split('="')[1]
-            conf_result[4]=conf_result[4].replace('"','')  
+            conf_result[4]=line.split('=')[1]
+            conf_result[4]=conf_result[4].replace('"','') 
+            conf_result[4]=conf_result[4].replace("'","")
     print(red(conf_result))
     return conf_result
 
@@ -73,6 +78,10 @@ def config():
 
 @app.route('/update_config',methods=['POST'])
 def update_config(): 
+    global host    
+    global host_for_token
+    global ctr_client_id
+    global ctr_client_password    
     line_out="""'''
     this script contains global variables used in several scripts
     you can decided to not use this config file in order to not risk to share credentials accidentally with other
@@ -97,24 +106,36 @@ def update_config():
     if region=="EU":
         line_out=line_out+'host="https://private.intel.eu.amp.cisco.com"\n'
         line_out=line_out+'host_for_token="https://visibility.eu.amp.cisco.com"\n'
+        host="https://private.intel.eu.amp.cisco.com"
+        host_for_token="https://visibility.eu.amp.cisco.com"
     elif region=="US":
         line_out=line_out+'host="https://private.intel.amp.cisco.com"\n'
-        line_out=line_out+'host_for_token="https://visibility.amp.cisco.com"\n'       
+        line_out=line_out+'host_for_token="https://visibility.amp.cisco.com"\n'   
+        host="https://private.intel.amp.cisco.com"
+        host_for_token="https://visibility.amp.cisco.com"        
     if region=="APJC":
         line_out=line_out+'host="https://private.intel.apjc.amp.cisco.com"\n'
-        line_out=line_out+'host_for_token="https://visibility.apjc.amp.cisco.com"\n'     
+        line_out=line_out+'host_for_token="https://visibility.apjc.amp.cisco.com"\n'   
+        host="https://private.intel.apjc.amp.cisco.com"
+        host_for_token="https://visibility.apjc.amp.cisco.com"        
     line_out=line_out+'SecureX_Webhook_url="'+webhook_url+'"\n'
     line_out=line_out+'webex_bot_token="'+bot_token+'"\n' 
     line_out=line_out+'webex_room_id="'+roomID+'"\n'  
-    line_out=line_out+'lab_date=""\n'    
+    line_out=line_out+'lab_date=""\n'        
     with open('config.py','w') as file: 
         file.write(line_out)
     return "<center><h1>CONFIG FILE MODIFIED</h1><form action='check'><input type='submit' value='Check SecureX'/></form></center>"    
 
 @app.route('/clean_config',methods=['GET'])
 def clean_config(): 
-    global host
+    global host    
+    global host_for_token
+    global ctr_client_id
+    global ctr_client_password  
     host=""
+    host_for_token=""
+    ctr_client_id=""
+    ctr_client_password=""
     line_out="""'''
     this script contains global variables used in several scripts
     you can decided to not use this config file in order to not risk to share credentials accidentally with other
@@ -140,7 +161,8 @@ def clean_config():
 def check(): 
     result=check_secureX()
     if result==1:
-        return "<center><h1>GOOD - Connexion with Threat Response is OK {FLAG:READY_TO_GO}</h1></center>"
+        #return "<center><h1>GOOD - Connexion with Threat Response is OK</h1></center>"
+        return "<center><h1>GOOD - Connexion with Threat Response is OK </h1><h2>{FLAG:READY_TO_GO}</h2></center>"
     if result==2:
         return "<center><h1>Something went wrong with asking for token - check host_for_token and API credentials</h1><form action='config'><input type='submit' value='Configuration'/></form></center></center>"        
     else:
