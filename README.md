@@ -58,4 +58,4 @@ you can install them with the following 2 commands one after the other :
 
 	python app.py
 
-At this point you should the the flask application starting into the console and then your browser must start on the Lab Portal page.
+At this point you should see the flask application starting into the console and then your browser must open on the Lab Portal page.
