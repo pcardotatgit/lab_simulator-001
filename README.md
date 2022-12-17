@@ -14,18 +14,27 @@ The goal is to showcase endpoint infection safely without doing it with real att
 
 ## Installation
 
-Create a working directory into your laptop. Open a terminal window into it.
+Create a working directory into your laptop. Open a terminal window into it. Name It **PVT_Lab** for example.
 
-### Clone the scripts
+### Copy the code into your laptop
 
-You must have a git client installed into your laptop. Then you can type the following command
+The most easy way for anyone not familiar with git is to copy the **ZIP** package available for you in this page. Click on the **Code** button on the top right of this page. And then click on **Download ZIP**. 
+
+Unzip the zip file into your working directory.
+
+And here under for those of you who are familiar with Github.
+
+You must have a git client installed into your laptop. Then you can type the following command from a terminal console opened into your working directory.
 
 	git clone https://github.com/pcardotatgit/lab_simulator-001.git
+
+Go to the **code** subfolder
+
 	cd lab_simulator-001-main\code
 	
-If you don't have a git client, then just download the zip package from the github repository and unzip it into your working directory.
-
 ### Create a Python virtual environment
+
+It is still a best practice to create a python virtual environment. Thank to this you will create a dedicated package with requested modules for this application.
 
 For Linux/Mac 
 
@@ -37,15 +46,16 @@ For Windows
 	python -m venv venv 
 	venv\Scripts\activate
 
-### install needed modules
+### Install needed modules
 
-you can install them with the following  :
+you can install them with the following 2 commands one after the other :
 	
 	python -m pip install --upgrade pip
+
 	pip install -r requirements.txt
 
 ### Start the simulator
 
 	python app.py
 
-
+At this point you should the the flask application starting into the console and then your browser must start on the Lab Portal page.
