@@ -28,7 +28,7 @@ You must have a git client installed into your laptop. Then you can type the fol
 
 	git clone https://github.com/pcardotatgit/lab_simulator-001.git
 
-Go to the **code** subfolder
+Once the code unzipped into your laptop, then Go to the **code** subfolder.
 
 	cd lab_simulator-001-main\code
 	
