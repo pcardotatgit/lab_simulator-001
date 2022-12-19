@@ -14,7 +14,7 @@ The goal is to showcase endpoint infection safely without doing it with real att
 
 ## Installation
 
-A Pre requesit before moving forward on the lab simulator installation is to have a python interpreter installed and running into your laptop.
+A Pre requisit before moving forward on the lab simulator installation is to have a python interpreter installed and running into your laptop.
 
 If you are not sure of this, then open a terminal console and type the following command :
 
