@@ -73,3 +73,9 @@ you can install them with the following 2 commands one after the other :
 	python app.py
 
 At this point you should see the flask application starting into the console and then your browser must open on the Lab Portal page.
+
+![](assets/img/1.png)
+
+![](assets/img/2.png)
+
+You can **stop the flask application** by doing Ctrl+C into the application console.
