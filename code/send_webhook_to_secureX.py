@@ -9,8 +9,6 @@ webex_bot_token=conf.webex_bot_token
 def send_webhook(ip):
     headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 
-    body_message={'message':'Hello Message sent in the body'}
-
     body_message={
         "list_of_ips": [ip],
         "roomId":webex_room_id,

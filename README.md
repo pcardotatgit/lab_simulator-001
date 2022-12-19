@@ -14,6 +14,20 @@ The goal is to showcase endpoint infection safely without doing it with real att
 
 ## Installation
 
+A Pre requesit before moving forward on the lab simulator installation is to have a python interpreter installed and running into your laptop.
+
+If you are not sure of this, then open a terminal console and type the following command :
+
+	python -V
+
+We expect to have back the version of your installed python version. This version must be at least 3.7. And we expect no error telling you for example that python was not found as an external application.
+
+If you have an error here. Then you must install python into your laptop and add python files folder into your OS path.
+
+If your python interpreter is correctly working, then you are good to go to next steps.
+
+Next step ...
+
 Create a working directory into your laptop. Open a terminal window into it. Name It **PVT_Lab** for example.
 
 ### Copy the code into your laptop
