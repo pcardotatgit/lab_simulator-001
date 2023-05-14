@@ -36,7 +36,7 @@ Create a working directory into your laptop. Open a terminal window into it. Nam
 
 ### Copy the code into your laptop
 
-** Download ZIP Method**
+**Download ZIP Method**
 
 The most easy way for anyone not familiar with git is to copy the **ZIP** package available for you in this page. Click on the **Code** button on the top right of this page. And then click on **Download ZIP**. 
 
