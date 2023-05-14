@@ -88,6 +88,8 @@ and then :
 
 For starting the simulator    
 
+### If you don't go to the Quick Start Methodn, then go to the step by step installation method here under
+
 ### step by step installation : 1 Create a Python virtual environment
 
 It is still a best practice to create a python virtual environment. Thank to this you will create a dedicated package with requested modules for this application.
@@ -101,37 +103,22 @@ For Windows
 
 	python -m venv venv 
 
-You can type
-
-	install1 and then Enter. This runs a windows batch script
-
 This create the python virtual environment
 
 And then type :
 
 	venv\Scripts\activate
 
-You can type
-
-	b and then Enter. This runs a windows batch script
 
 ### step by step installation : 2 Install needed modules
 
-you can install them with the following 2 commands one after the other :
+You can install them with the following 2 commands one after the other :
 	
 	python -m pip install --upgrade pip
-
-For windows users you can type :
-
-	c which runs a windows batch file
 
 Then install required python modules
 
 	pip install -r requirements.txt
-
-For windows users you can type :
-
-	d which runs a windows batch file 
 
 ### step by step installation : 3 Start the simulator
 
@@ -139,7 +126,7 @@ For windows users you can type :
 
 For windows users you can type :
 
-	start which runs a windows batch file which start the simulator
+	b which runs a windows batch file which start the simulator
 
 At this point you should see the flask application starting into the console and then your browser must open on the Lab Portal page.
 
