@@ -150,7 +150,7 @@ If you click into the hacker icon you will see a cmd console opens.
 
 You can type anything into the edit field.
 
-## Start the simulator when python package is already done :
+## Start the simulator when python package is already installed :
 
 Open a CMD console into the code folder and type :
 
