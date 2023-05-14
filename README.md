@@ -35,11 +35,11 @@ Next step ...
 Create a working directory into your laptop. Open a terminal window into it. Name It **PVT_Lab** for example.
 
 ### Copy the code into your laptop
-
+** Download ZIP Method**
 The most easy way for anyone not familiar with git is to copy the **ZIP** package available for you in this page. Click on the **Code** button on the top right of this page. And then click on **Download ZIP**. 
 
 Unzip the zip file into your working directory.
-
+**Or clone the code with a git client**
 And here under for those of you who are familiar with Github.
 
 You must have a git client installed into your laptop. Then you can type the following command from a terminal console opened into your working directory.
