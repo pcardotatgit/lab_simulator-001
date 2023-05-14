@@ -161,12 +161,12 @@ def clean_config():
 def check(): 
     result=check_secureX()
     if result==1:
-        #return "<center><h1>GOOD - Connexion with Threat Response is OK</h1></center>"
-        return "<center><h1>GOOD - Connexion with Threat Response is OK </h1><h2>{FLAG:READY_TO_GO}</h2></center>"
+        return "<center><span style='color:green'><h1>GOOD <br>Connexion with Threat Response is OK</h1>( aks for a ctr = OK and read incidents = ok )</span></center>"
+        #return "<center><h1>GOOD - Connexion with Threat Response is OK </h1><h2>{FLAG:READY_TO_GO}</h2></center>"
     if result==2:
-        return "<center><h1>Something went wrong with asking for token - check host_for_token and API credentials</h1><form action='config'><input type='submit' value='Configuration'/></form></center></center>"        
+        return "<center><span style='color:red'><h1>Something went wrong with asking for token <br> check host_for_token and API credentials</h1></span><form action='config'><input type='submit' value='Configuration'/></form></center></center>"        
     else:
-        return "<center><h1>Something went wrong with asking for incidents - check host and API credentials</h1><form action='config'><input type='submit' value='Configuration'/></form></center>"
+        return "<center><span style='color:red'><h1>Something went wrong with asking for token <br> check host_for_token and API credentials</h1></span><form action='config'><input type='submit' value='Configuration'/></form></center></center>"
     
 @app.route('/block',methods=['GET'])
 def block():
