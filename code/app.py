@@ -1,4 +1,4 @@
-# version 20221211
+# version 20230514
 from flask import Flask, flash, redirect, render_template, request, session, abort, send_file
 import os
 from create_incident_and_sightings_with_dynamic_data import create_incident_with_sightings
@@ -9,10 +9,13 @@ from generate_and_save_token import check_secureX
 import webbrowser
 import threading
 import time
+import requests
 
 host=conf.host
 ctr_client_id=conf.ctr_client_id
 ctr_client_password=conf.ctr_client_password
+DESTINATION_ROOM_ID=conf.webex_room_id
+BOT_ACCESS_TOKEN=conf.webex_bot_token
 
 hacked=0
 
@@ -60,7 +63,38 @@ def parse_config(text_content):
     print(red(conf_result))
     return conf_result
 
+def send_message(message):
+    global BOT_ACCESS_TOKEN
+    global DESTINATION_ROOM_ID
+    lines=[]
     
+    print(cyan(f"BOT_ACCESS_TOKEN = {BOT_ACCESS_TOKEN}",bold=True))
+    print(cyan(f"DESTINATION_ROOM_ID = {DESTINATION_ROOM_ID}",bold=True))
+
+    #URL = 'https://api.ciscospark.com/v1/messages'
+    URL = 'https://webexapis.com/v1/messages'
+    headers = {'Authorization': 'Bearer ' + BOT_ACCESS_TOKEN,
+               'Content-type': 'application/json;charset=utf-8'}
+    post_data = {'roomId': DESTINATION_ROOM_ID,
+                 'text': message}
+    response = requests.post(URL, json=post_data, headers=headers)
+    if response.status_code == 200:
+        # Great your message was posted!
+        #message_id = response.json['id']
+        #message_text = response.json['text']
+        print(green("New message succesfully sent",bold=True))
+        #print(message_text)
+        print("====================")
+        print(response)
+        return 1
+    elif response.status_code == 401:
+        print()
+        print(red("Error bad authentication token",bold=True))
+        return 2        
+    else:
+        # Oops something went wrong...  Better do something about it.
+        print(red(response.status_code, response.text,bold=True))    
+        return 3        
     
 app = Flask(__name__)
 
@@ -155,18 +189,26 @@ def clean_config():
         file.write(line_out)
     with open('ctr_token','w') as file: 
         file.write("***")        
-    return "<center><h1>CONFIG FILE MODIFIED</h1><form action='check'><input type='submit' value='Check SecureX'/></form></center>"    
-    
+    return "<center><h1>CONFIG FILE MODIFIED</h1><form action='check'></h1><center><span style='color:red'><h1>You must restart flask in order to take into account these changes</h1></center>"    
+
+@app.route('/check_alert_room')
+def check_alert_room():
+    if send_message("TEST MESSAGE SEND TO ALERT ROOM FROM SIMULATORs")==1:
+        return "<center><span style='color:green'><h1>ALL GOOD <br>Connexion connexion with Webex was Ok</span></h1>Check Test message into the Webex Room</center>"    
+    elif send_message(message)==2:
+        return "<center><span style='color:red'><h1>TOKEN NOT GOOD</span></center>"          
+    else:
+        return "<center><span style='color:red'><h1>Something went wrong !</center>"    
 @app.route('/check')
+
 def check(): 
     result=check_secureX()
     if result==1:
         return "<center><span style='color:green'><h1>GOOD <br>Connexion with Threat Response is OK</h1>( aks for a ctr = OK and read incidents = ok )</span></center>"
-        #return "<center><h1>GOOD - Connexion with Threat Response is OK </h1><h2>{FLAG:READY_TO_GO}</h2></center>"
-    if result==2:
+    elif result==2:
         return "<center><span style='color:red'><h1>Something went wrong with asking for token <br> check host_for_token and API credentials</h1></span><form action='config'><input type='submit' value='Configuration'/></form></center></center>"        
     else:
-        return "<center><span style='color:red'><h1>Something went wrong with asking for token <br> check host_for_token and API credentials</h1></span><form action='config'><input type='submit' value='Configuration'/></form></center></center>"
+        return "<center><span style='color:red'><h1>Something went wrong with asking for token <br> check host_for_token and API credentials</h1></span><form action='config'><input type='submit' value='Configuration'/></form></center>"
     
 @app.route('/block',methods=['GET'])
 def block():
@@ -176,9 +218,9 @@ def block():
         ip_to_block = request.args['ip']
     print(cyan(f"IP to block is : {ip_to_block}",bold=True))    
     if send_webhook(ip_to_block):
-        return "<h2>IP address was succesfully sent to SecureX blocking feed Update workflow</h2>"
+        return "<h2><center><span style='color:green'>IP address was succesfully sent to SecureX blocking feed Update workflow</span></center></h2>"
     else:
-        return "<h1>An Error Occured - IP was NOT sent to Securex blocking feed Update workflow</h1>"
+        return "<h1><center><span style='color:red'>An Error Occured - IP was NOT sent to Securex blocking feed Update workflow</span></center></h1>"
     
 @app.route('/a')
 def test1():
@@ -202,6 +244,10 @@ def cmd():
     hacked=1 
     create_incident_with_sightings(host)
     return render_template('hacker_console-2.html')
+    
+@app.route('/victim_info')
+def victim_info():
+    return render_template('victim_info.html')
     
 @app.route('/')
 def index():

@@ -27,8 +27,24 @@
     </head>
     
 <body>
-<table><tbody><tr><td><a href="javascript:popup_window('config_and_checks', 'hacker_console', 600, 400);">Config and checks</a></td><td><a href="https://securex.eu.security.cisco.com/" target="_blank">Connect to SecureX</a></td><td><a href="https://developer.webex.com/" target="_blank">Connect to Developer Webex</a></td></tr>
-</tbody></table><hr>
+<table><tbody>
+<tr><td><form action="javascript:popup_window('config', 'configuration', 700, 500);">
+	<input type="submit" value="Settings"/>
+	</form></td><td><form action="javascript:popup_window('check', 'Cisco_XDR_Check', 700, 500);">
+	<input type="submit" value="Check SecureX / Cisco XDR"/>
+	</form></td>
+    <td><form action="javascript:popup_window('check_alert_room', 'check_alert_room', 700, 500);">
+	<input type="submit" value="Check Alert Room"/>
+	</form></td>
+    <td><form action="javascript:popup_window('https://securex.eu.security.cisco.com/', 'Cisco_XDR', 700, 500);">
+	<input type="submit" value="Open Cisco XDR Console"/>
+	</form></td>  
+    <td><form action="javascript:popup_window('https://developer.webex.com/', 'Webex_developer', 700, 500);">
+	<input type="submit" value="Open Webex Developer "/>
+	</form></td>     
+    </tr>
+</tbody></table>
+<hr>
 <div class="container" id="page">				
 	<div id="content">
 <form id="yw0">       
@@ -38,9 +54,8 @@
 <div align="center">
             <p style="align:center"><img class="map" align="center" src="/static/lab_network.jpg" usemap="#map"/></p>
 <map name="map">	
-
     <AREA SHAPE=RECT COORDS="34,90,90,138" HREF="javascript:popup_window('hacker', 'hacker_console', 600, 400);">
-    <AREA SHAPE=RECT COORDS="792,231,824,278" HREF="javascript:popup_window('chose', 'hacker_console', 600, 400);">    
+    <AREA SHAPE=RECT COORDS="792,231,824,278" HREF="javascript:popup_window('/victim_info', 'victim_info', 600, 400);">    
 </map>
             </div>
 </div>
