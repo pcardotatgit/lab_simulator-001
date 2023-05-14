@@ -56,7 +56,7 @@ Once the code unzipped into your laptop, then Go to the **code** subfolder.
 
 	cd lab_simulator-001-main\code
     
-### Quick Start for windows user
+### Quick Start only for Windows User
 
 This section is only for windows users. In order to make installation steps easier some batch file had been prepared for you.  You just have to run them one after the other.
     
