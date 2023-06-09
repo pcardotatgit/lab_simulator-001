@@ -212,13 +212,10 @@ def check():
     
 @app.route('/block',methods=['GET'])
 def block():
-    if request.args['ip']=='91.109.190.8':
-        ip_to_block = request.args['ip']+"FLAGYouRockMan"
-    else:
-        ip_to_block = request.args['ip']
-    print(cyan(f"IP to block is : {ip_to_block}",bold=True))    
+    ip_to_block = request.args['ip']
+    print(cyan(f"IP to block is : {ip_to_block} FLAGYouRockMan",bold=True))    
     if send_webhook(ip_to_block):
-        return "<h2><center><span style='color:green'>IP address was succesfully sent to SecureX blocking feed Update workflow</span></center></h2>"
+        return "<h2><center><span style='color:green'>IP address was succesfully sent to SecureX blocking feed Update workflow ( FLAGYouRockMan )</span></center></h2>"
     else:
         return "<h1><center><span style='color:red'>An Error Occured - IP was NOT sent to Securex blocking feed Update workflow</span></center></h1>"
     
