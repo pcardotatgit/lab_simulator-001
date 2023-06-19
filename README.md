@@ -124,9 +124,11 @@ Then install required python modules
 
 	python app.py
 
-For windows users you can type :
+For windows users you can type the letter b :
 
-	b which runs a windows batch file which start the simulator
+	b 
+    
+which runs a windows batch file which start the simulator
 
 At this point you should see the flask application starting into the console and then your browser must open on the Lab Portal page.
 
