@@ -1,16 +1,16 @@
-# Lab Simulator ( v_20230619 )
+# Lab Simulator ( v_20230930 )
 
-This lab simulator is a python flask application that simulate endpoint infection for SecureX / Cisco XDR Demonstrations.
+This lab simulator is a python flask application that simulate endpoint infection for Cisco XDR ( or SecureX) Demos.
 
 This is actually a tiny web server that listen on http port 4000. This one is supposed to be installed into your laptop.
 
-The simulator exposes a Web GUI that is a network diagram we can interact with. The simulator manages interaction with your SecureX tenant as well.
+The simulator exposes a Web GUI that is a network diagram you can interact with. The simulator manages interaction with your Cisco XDR tenant as well.
 
 ![](assets/img/0.png)
 
-This GUI simulates an endpoint infection which create incidents and sightings into your SecureX Tenant. Exactly like what happen with real infections. The same alerts are created within SecureX.
+The web GUI simulates an endpoint infection which creates incidents and sightings into your Cisco XDR Tenant. Exactly like what happen with real infections.
 
-The goal is to showcase endpoint infection safely without doing it with real attacks and malwares.
+We simulate an infection but we create a real Cisco XDR Incident. And we do this this way because we don't want to use real attacks or malwares.
 
 ## Installation
 
@@ -24,25 +24,25 @@ The result of this command is the version of your installed python interpreter. 
 
 If you don't have any python interpreter then you have to install one.
 
-If your laptop is a windows machine the install **Python for Windows** ( don't forget to click on the [ add python to path] checkbox ). Python 3.7 was the version used for this lab. For this only reason it is the recommended version to install. 
+If your laptop is a windows machine the install **Python for Windows** package. This one install everything you need ( and don't forget to click on the [ add python to path] checkbox in the installer GUI ). Python 3.7 was the version used for creating this app. And it will work with 3.11 with no problems.
 
 If your python interpreter is correctly working, then you are good to go to next steps.
 
 Next step ...
 
-### Create a working directory
+### Step 1. Create a working directory
 
-Create a working directory into your laptop. Open a terminal window into it. Name It **PVT_Lab** for example.
+Create a working directory into your laptop. Open a terminal CMD window into it. Name It **PVT_Lab** for example.
 
-### Copy the code into your laptop
+### Step 2. Copy the code into your laptop
 
-**Download ZIP Method**
+**The Download ZIP Method**
 
 The most easy way for anyone not familiar with git is to copy the **ZIP** package available for you in this page. Click on the **Code** button on the top right of this page. And then click on **Download ZIP**. 
 
 Unzip the zip file into your working directory.
 
-**Or clone the code with a git client**
+**The "git clone" method with git client**
 
 And here under for those of you who are familiar with Github.
 
@@ -50,15 +50,15 @@ You must have a git client installed into your laptop. Then you can type the fol
 
 	git clone https://github.com/pcardotatgit/lab_simulator-001.git
 
-### Go to the code subfolder
+### Step 3. Go to the code subfolder
 
 Once the code unzipped into your laptop, then Go to the **code** subfolder.
 
 	cd lab_simulator-001-main\code
     
-### Quick Start only for Windows User
+### Step 4a. Quick Start only for Windows Users
 
-This section is only for windows users. In order to make installation steps easier some batch file had been prepared for you.  You just have to run them one after the other.
+This section is only for windows users. In order to make installation steps easier some batch files had been prepared for you.  You just have to run them one after the other.
     
 You must have a CMD console openned into your code folder :
 
@@ -71,24 +71,13 @@ Then type one after the other the batch files
     install3
     install4
 
-And then you can start the simulator by typing :
+And then you can start the simulator by typing the letter **b** and **Enter**:
 
-    b
-    
-This installation steps must be done only once. 
+You should see the application starting. 
 
-After that when you will want to run quickly the simulator you will just need to type :
+All depencies are installed then. Later when you will run again the simulator you will just have to type first the letter **a** + **Enter**, letter **b** + **Enter**
 
-    a
-For starting the python virtual environment
-
-and then :
-
-    b
-
-For starting the simulator    
-
-### If you don't go to the Quick Start Methodn, then go to the step by step installation method here under
+### Step 4b. If you don't go to the Quick Start Method, then go to the step by step installation method here under
 
 ### step by step installation : 1 Create a Python virtual environment
 
@@ -109,8 +98,7 @@ And then type :
 
 	venv\Scripts\activate
 
-
-### step by step installation : 2 Install needed modules
+### step by step installation : 2 Install needed python modules
 
 You can install them with the following 2 commands one after the other :
 	
@@ -124,15 +112,13 @@ Then install required python modules
 
 	python app.py
 
-For windows users you can type the letter b :
+For windows users you can type :
 
-	b 
-    
-which runs a windows batch file which start the simulator
+	**b**. This is a bat file which start the simulator
 
 At this point you should see the flask application starting into the console and then your browser must open on the Lab Portal page.
 
-This web server listens to port 4000. At anytime you can open the index page at http[://]localhost:4000.
+This web server listens to port 4000. At anytime you can open the index page at **http[://]localhost:4000**.
 
 
 
@@ -148,21 +134,22 @@ You can **stop the flask application** by typing Ctrl+C into the application con
 Instructions for SecureX / Cisco XDR interaction are given into the [Detect, Alert and Block Threat Use Case](https://github.com/pcardotatgit/SecureX_Workflows_and_Stuffs/tree/master/100-SecureX_automation_lab) lab.
 
 
-If you click into the hacker icon you will see a cmd console opens.
+If you click into the hacker icon, then you will see a cmd console opens.
 
 You can type anything into the edit field.
 
-## Start the simulator when python package is already installed :
+## Start the simulator when python package and modules are already installed :
 
 Open a CMD console into the code folder and type :
 
-    a
-For starting the python virtual environment
+type the letter
+    **a**
+To start the python virtual environment
 
-and then :
+and then the letter:
 
-    b
+    **b**
 
-For starting the simulator  
+To starting the simulator  
 
 Ready to go !
