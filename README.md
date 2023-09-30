@@ -114,13 +114,11 @@ Then install required python modules
 
 For windows users you can type :
 
-	**b**. This is a bat file which start the simulator
+	b  This is a bat file which start the simulator
 
 At this point you should see the flask application starting into the console and then your browser must open on the Lab Portal page.
 
 This web server listens to port 4000. At anytime you can open the index page at **http[://]localhost:4000**.
-
-
 
 
 ![](assets/img/1.png)
@@ -133,8 +131,7 @@ You can **stop the flask application** by typing Ctrl+C into the application con
 
 Instructions for SecureX / Cisco XDR interaction are given into the [Detect, Alert and Block Threat Use Case](https://github.com/pcardotatgit/SecureX_Workflows_and_Stuffs/tree/master/100-SecureX_automation_lab) lab.
 
-
-If you click into the hacker icon, then you will see a cmd console opens.
+If you click into the hacker icon, then you will see a CMD console opens.
 
 You can type anything into the edit field.
 
@@ -142,14 +139,8 @@ You can type anything into the edit field.
 
 Open a CMD console into the code folder and type :
 
-type the letter
-    **a**
-To start the python virtual environment
+Type the letter **a** to start the python virtual environment
 
-and then the letter:
-
-    **b**
-
-To starting the simulator  
+And then the letter **b** to starting the simulator  
 
 Ready to go !
