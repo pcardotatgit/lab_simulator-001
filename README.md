@@ -141,6 +141,6 @@ Open a CMD console into the code folder and type :
 
 Type the letter **a** to start the python virtual environment
 
-And then the letter **b** to starting the simulator  
+And then the letter **b** to start the simulator  
 
 Ready to go !
