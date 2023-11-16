@@ -83,12 +83,12 @@ All depencies are installed then. Later when you will run again the simulator yo
 
 It is still a best practice to create a python virtual environment. Thank to this you will create a dedicated package with requested modules for this application.
 
-**Create a virtual environment on Windows **
+**Create a virtual environment on Windows**
 
 	python -m venv venv 
     
 
-**Create a virtual environment on Linux or Mac **
+**Create a virtual environment on Linux or Mac**
 
 	python3 -m venv venv
 
@@ -106,11 +106,11 @@ It is still a best practice to create a python virtual environment. Thank to thi
 
 And then type :
 
-**Activate the virtual environment on Windows **
+**Activate the virtual environment on Windows**
 
 	venv\Scripts\activate
     
-**Activate the virtual environment on Linux or Mac **
+**Activate the virtual environment on Linux or Mac**
 
 	source venv/bin/activate    
 
