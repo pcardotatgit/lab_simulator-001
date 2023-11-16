@@ -83,24 +83,40 @@ All depencies are installed then. Later when you will run again the simulator yo
 
 It is still a best practice to create a python virtual environment. Thank to this you will create a dedicated package with requested modules for this application.
 
-For Linux/Mac 
-
-	python3 -m venv venv
-	source /bin/activate
-
-For Windows 
+**Create a virtual environment on Windows **
 
 	python -m venv venv 
+    
 
-This create the python virtual environment
+**Create a virtual environment on Linux or Mac **
+
+	python3 -m venv venv
+
+    Depending on the python version you installed into your Mac you might have to type either 
+
+    - python -m venv venv
+
+    or maybe
+
+    - python3 -m venv venv    : python3 for python version 3.x  
+
+    or maybe 
+
+    - python3.9 -m venv venv  : if you use the 3.9 python version
 
 And then type :
 
+**Activate the virtual environment on Windows **
+
 	venv\Scripts\activate
+    
+**Activate the virtual environment on Linux or Mac **
+
+	source venv/bin/activate    
 
 ### step by step installation : 2 Install needed python modules
 
-You can install them with the following 2 commands one after the other :
+You can install them with the following 2 commands one after the other ( Windows / Mac / Linux ):
 	
 	python -m pip install --upgrade pip
 
@@ -110,9 +126,11 @@ Then install required python modules
 
 ### step by step installation : 3 Start the simulator
 
+Just run the flask application as a python script ( Windows / Mac / Linux ) :
+
 	python app.py
 
-For windows users you can type :
+For windows ( only ) users you can type :
 
 	b  This is a bat file which start the simulator
 
