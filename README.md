@@ -1,4 +1,4 @@
-# Lab Simulator ( v_20230930 )
+# Lab Simulator ( v_20231116 )
 
 This lab simulator is a python flask application that simulate endpoint infection for Cisco XDR ( or SecureX) Demos.
 
