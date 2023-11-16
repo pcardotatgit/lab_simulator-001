@@ -104,7 +104,7 @@ It is still a best practice to create a python virtual environment. Thank to thi
 
     - python3.9 -m venv venv  : if you use the 3.9 python version
 
-And then type :
+And then move to the next step : Activate the virtual environment.
 
 **Activate the virtual environment on Windows**
 
@@ -117,10 +117,13 @@ And then type :
 ### step by step installation : 2 Install needed python modules
 
 You can install them with the following 2 commands one after the other ( Windows / Mac / Linux ):
-	
-	python -m pip install --upgrade pip
 
-Then install required python modules
+The following command might be required if your python version is old.
+	
+	python -m pip install --upgrade pip   
+    
+
+Then install required python modules ( Windows / Mac / Linux )
 
 	pip install -r requirements.txt
 
