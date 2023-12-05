@@ -79,7 +79,7 @@ All depencies are installed then. Later when you will run again the simulator yo
 
 ### Step 4b. If you don't go to the Quick Start Method, then go to the step by step installation method here under
 
-### step by step installation : 1 Create a Python virtual environment
+### Step by step installation : 1 Create a Python virtual environment
 
 It is still a best practice to create a python virtual environment. Thank to this you will create a dedicated package with requested modules for this application.
 
