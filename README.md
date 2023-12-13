@@ -1,6 +1,6 @@
-# Lab Simulator ( v_20231116 )
+# Lab Simulator ( v_20231213 )
 
-This lab simulator is a python flask application that simulate endpoint infection for Cisco XDR ( or SecureX) Demos.
+This lab simulator is a python flask application that simulate endpoint infection for SecureX Demos.
 
 This is actually a tiny web server that listen on http port 4000. This one is supposed to be installed into your laptop.
 
@@ -10,7 +10,7 @@ The simulator exposes a Web GUI that is a network diagram you can interact with.
 
 The web GUI simulates an endpoint infection which creates incidents and sightings into your Cisco XDR Tenant. Exactly like what happen with real infections.
 
-We simulate an infection but we create a real Cisco XDR Incident. And we do this this way because we don't want to use real attacks or malwares.
+We simulate an infection but we create a real SecureX Incident. And we do this this way because we don't want to use real attacks or malwares.
 
 ## Installation
 
@@ -150,7 +150,7 @@ You can **stop the flask application** by typing Ctrl+C into the application con
 
 ### Navigate into the network
 
-Instructions for SecureX / Cisco XDR interaction are given into the [Detect, Alert and Block Threat Use Case](https://github.com/pcardotatgit/SecureX_Workflows_and_Stuffs/tree/master/100-SecureX_automation_lab) lab.
+Instructions for SecureX interaction are given into the [Detect, Alert and Block Threat Use Case](https://github.com/pcardotatgit/SecureX_Workflows_and_Stuffs/tree/master/100-SecureX_automation_lab) lab.
 
 If you click into the hacker icon, then you will see a CMD console opens.
 
