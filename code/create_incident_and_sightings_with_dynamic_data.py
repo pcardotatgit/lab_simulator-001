@@ -1,6 +1,6 @@
 '''
-    Create a bundle incident + sightings + relationship
-    v20221209
+    Create an XDR new inbcident : bundle incident + sightings + relationship
+    v20231023
 '''
 import requests
 import json
@@ -10,7 +10,7 @@ import time
 import sys
 import config as conf
 
-host = conf.host
+host = conf.host_for_token
 host_for_token=conf.host_for_token
 item_list=[]
 ctr_client_id=conf.ctr_client_id
@@ -98,9 +98,9 @@ def date_plus_x_days(nb):
     timestampStr = start_time.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
     return(timestampStr)
     
-def create_event_bunble_json():
+def create_event_bunble_json_bak():
     '''
-        create the incident with a sighthing
+        create the incident with a sighthing - ORIGINAL OK for SecureX
     '''
     # Bundle global
     source_ref="transient:patrick-sighting-bbcde36fe2c678aa969162272ed8e8ac215f7705b13f4e2530d1c572a9"
@@ -199,9 +199,9 @@ def create_event_bunble_json():
     }
     return(json_data)
     
-def create_event_bunble_json2():
+def create_event_bunble_json():
     '''
-        create a new incident with a sighthing
+        create a new XDR incident with a sighthing DEV
     '''
     # Bundle global
     source_ref="transient:patrick-sighting-cccde36fe2c678aa969162272ed8e8ac215f7705b13f4e2530d1c572a9"
@@ -210,7 +210,7 @@ def create_event_bunble_json2():
     incident_severity="Critical"    
     incident_short_description="Infection example for PVT Lab"
     time=current_date_time_simple()
-    incident_title="PVT Endpoint Infection demo OTHER"    
+    incident_title="PVT Endpoint Infection demo"    
     incident_description=f"| Incident Title | LAPTOP SEVERE INFECTION |\n| - | - |\n| Promoted at | {time} UTC |\n| Promotion method | Automated |\n| Indicators | **Possible Powershell Post-Exploitation Loader**: Several PowerShell-based post exploitation frameworks such as PowerShell Empire and CobaltStrike loaders decode and run byte code in memory, which is often also compressed and base64-encoded. A PowerShell command similar to such frameworks was executed. |\n| MITRE Tactics | [TA0005](https://attack.mitre.org/tactics/TA0005): Defense Evasion<br>[TA0002](https://attack.mitre.org/tactics/TA0002): Execution |\n| MITRE Techniques | [T1059.001](https://attack.mitre.org/techniques/T1059/001): PowerShell |\n| Host name | Patrick_Laptop |\n| GUID | 57150e86-fcbe-47ff-8bc7-3f297d473b79 |\n| Operating System | Windows 8.1 Connected (Build 9600.19893) |\n| Group | Patrick_Group |\n| Policy | Audit_Patrick |\n| Internal IP | 192.168.0.137 |\n| External IP | 84.48.25.16 |\n"
     incident_source_uri='https://console.eu.amp.cisco.com/computers/57150e86-fcbe-47ff-8bc7-3f297d473b79/trajectory2'
     incident_confidence="High"   
@@ -281,21 +281,38 @@ def create_event_bunble_json2():
             }          
         ],
     "incidents":[
-            {"id":target_ref,
-            "type":"incident",
-            "external_ids":[target_ref],
-            "source":source,
-            "source_uri":incident_source_uri,
-            "title":incident_title,
-            "short_description":incident_short_description,
-            "description":incident_description,
-            "confidence":incident_confidence,
-            "severity":incident_severity,
-            "status":"New",
-            "incident_time":{"opened":current_date_time(),"discovered":current_date_time()},
-            "categories":[categories[3]],
-            "discovery_method":discover_method[2],
-            "promotion_method":promotion_method
+            {
+                "id":target_ref,
+                "title":incident_title,
+                "description":incident_description,
+                "short_description":incident_short_description,            
+                "type":"incident",
+                "schema_version": "1.3.5",
+                "external_ids":[target_ref],
+                "source":source,
+                "source_uri":incident_source_uri,
+                "confidence":incident_confidence,
+                "status":"New",
+                "incident_time":{"opened":current_date_time(),"discovered":current_date_time()},
+                "techniques": [
+                    "T1102"
+                    ],
+                "tactics": [
+                        "TA0043",
+                        "TA0011",
+                        "TA0001"
+                    ],
+                "external_references": [
+                        {
+                            "source_name": "Cisco XDR APIs",
+                            "url": "https://developer.cisco.com/docs/cisco-xdr/"
+                        }
+                    ],
+                "scores": {
+                    "asset": 10,
+                    "ttp": 95,
+                    "global": 950
+                }                    
             }
         ]
     }
@@ -361,8 +378,7 @@ def add_sighting_to_incident_bunble_json():
                 "sensor_coordinates":{
                     "type":"endpoint",
                     "observables":[
-                                {"type":"ip","value":"192.168.69.22"},
-                                {"type":"device","value":"Example of Devide Identifier"}
+                                {"type":"ip","value":"192.168.69.22"}
                         ]
                     },
                 "observables":[
@@ -416,23 +432,35 @@ def create_incident_with_sightings(host):
     print()
     print(incident_json)
     print()
-    print("Let's connect to CTIA for creating the event")
+    print("Let's connect to CTIA and Create the Incident")
     print()
-    url = f"{host}/ctia/bundle/import" 
-    
+    url = f"{host}/iroh/private-intel/bundle/import?external-key-prefixes=sxo" 
+    #url = f"{host}/iroh/private-intel/bundle/import" 
+    print()
+    print(url)
+    print()    
     headers = {'Authorization':'Bearer {}'.format(access_token), 'Content-Type':'application/json', 'Accept':'application/json'}
-    response = requests.post(url, json=incident_json,headers=headers)
+    response = requests.post(url, data=json.dumps(incident_json),headers=headers)
     print()  
-    print(response.status_code) 
     if response.status_code==401:
+        print("Asking for a Token") 
         access_token=get_ctr_token(host_for_token)
         headers = {'Authorization':'Bearer {}'.format(access_token), 'Content-Type':'application/json', 'Accept':'application/json'}        
-        response = requests.post(url, json=incident_json,headers=headers)  
+        response = requests.post(url, data=json.dumps(incident_json),headers=headers)  
         print(response.status_code) 
-    print()         
-    print("Ok Done")         
-    print()    
-    print(response.json())    
+    elif response.status_code!=200:
+        print(red(response.status_code,bold=True)) 
+        print()         
+        print(red("Error !",bold=True))    
+        print(response.json())  
+        print()        
+    else:
+        print(green(response.status_code,bold=True)) 
+        print()         
+        print("Ok Done")         
+        print()    
+    #print(response.json())    
+    '''
     print()
     print("Now let's add another sighting to the incident")
     print()      
@@ -440,23 +468,33 @@ def create_incident_with_sightings(host):
     print()
     print(incident_json)
     print()
-    print("Let's connect to CTIA for creating the event")
+    print("Let's connect to CTIA for adding the sighting into the existing incident")
     print()
-    url = f"{host}/ctia/bundle/import" 
-    headers = {'Authorization':'Bearer {}'.format(access_token), 'Content-Type':'application/json', 'Accept':'application/json'}
-    response = requests.post(url, json=incident_json,headers=headers)
-    print()   
-    print(response.status_code) 
+    #url = f"{host}/iroh/private-intel/bundle/import?external-key-prefixes=sxo" 
+    #headers = {'Authorization':'Bearer {}'.format(access_token), 'Content-Type':'application/json', 'Accept':'application/json'}
+    response = requests.post(url, data=json.dumps(incident_json),headers=headers)
+    print()  
     if response.status_code==401:
+        print("Asking for a Token") 
         access_token=get_ctr_token(host_for_token)
         headers = {'Authorization':'Bearer {}'.format(access_token), 'Content-Type':'application/json', 'Accept':'application/json'}        
-        response = requests.post(url, json=incident_json,headers=headers)  
-        print(response.status_code)     
-    print()           
-    print("Ok Done")
-    print()    
-    print(response)
-    print()    
-    print(response.json())      
+        response = requests.post(url, data=json.dumps(incident_json),headers=headers)  
+        print(response.status_code) 
+    elif response.status_code!=200:
+        print(red(response.status_code,bold=True)) 
+        print()         
+        print(red("Error !",bold=True))    
+        print(response.json())  
+        print()        
+    else:
+        print(green(response.status_code,bold=True)) 
+        print()         
+        print("Ok Done")         
+        print()   
+    '''
     return 1
 
+'''    
+if __name__=="__main__":
+    create_incident_with_sightings(host)
+'''

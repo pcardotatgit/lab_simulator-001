@@ -1,4 +1,4 @@
-# version 20230610
+# version 20230514
 from flask import Flask, flash, redirect, render_template, request, session, abort, send_file
 import os
 from create_incident_and_sightings_with_dynamic_data import create_incident_with_sightings
@@ -12,6 +12,7 @@ import time
 import requests
 
 host=conf.host
+host_xdr=conf.host_for_token
 ctr_client_id=conf.ctr_client_id
 ctr_client_password=conf.ctr_client_password
 DESTINATION_ROOM_ID=conf.webex_room_id
@@ -212,10 +213,13 @@ def check():
     
 @app.route('/block',methods=['GET'])
 def block():
-    ip_to_block = request.args['ip']
-    print(cyan(f"IP to block is : {ip_to_block} FLAGYouRockMan",bold=True))    
+    if request.args['ip']=='91.109.190.8':
+        ip_to_block = request.args['ip']+"FLAGYouRockMan"
+    else:
+        ip_to_block = request.args['ip']
+    print(cyan(f"IP to block is : {ip_to_block}",bold=True))    
     if send_webhook(ip_to_block):
-        return f"<h2><center><span style='color:green'>IP address {ip_to_block} was succesfully sent to SecureX blocking feed Update workflow ( FLAGYouRockMan )</span></center></h2>"
+        return "<h2><center><span style='color:green'>IP address was succesfully sent to SecureX blocking feed Update workflow</span></center></h2>"
     else:
         return "<h1><center><span style='color:red'>An Error Occured - IP was NOT sent to Securex blocking feed Update workflow</span></center></h1>"
     
@@ -233,19 +237,20 @@ def reset():
     
 @app.route('/hacker')
 def hacker():
-    return render_template('hacker_console-1.html')
-    
-@app.route('/cmd')
+    #return render_template('hacker_console-1.html')
+    return render_template('login.html')
+       
+@app.route('/login')
 def cmd():
     global hacked
     hacked=1 
-    create_incident_with_sightings(host)
-    return render_template('hacker_console-2.html')
+    create_incident_with_sightings(host_xdr)
+    return render_template('happy.html')
     
 @app.route('/victim_info')
 def victim_info():
     return render_template('victim_info.html')
-    
+        
 @app.route('/')
 def index():
     global hacked

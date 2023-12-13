@@ -8,6 +8,7 @@ import config as conf
 
 host=conf.host
 item_list=[]
+source_to_filter="PVT SecureX Lab"
 
 def get(host,access_token,url,offset,limit):    
     headers = {'Authorization':'Bearer {}'.format(access_token), 'Content-Type':'application/json', 'Accept':'application/json'}
@@ -46,7 +47,7 @@ def get_sightings(host,access_token):
                     if 'this_endpoint_hostname' in subsubitem.values():
                         go=1    
             '''  
-            if item['source']=="PVT SecureX Lab": #filter on source
+            if item['source']==source_to_filter: #filter on source
                 go=1              
             if go:
                 index+=1
