@@ -196,7 +196,7 @@ def clean_config():
 def check_alert_room():
     if send_message("TEST MESSAGE SEND TO ALERT ROOM FROM SIMULATORs")==1:
         return "<center><span style='color:green'><h1>ALL GOOD <br>Connexion connexion with Webex was Ok</span></h1>Check Test message into the Webex Room</center>"    
-    elif send_message(message)==2:
+    elif send_message("TEST MESSAGE SEND TO ALERT ROOM FROM SIMULATORs")==2:
         return "<center><span style='color:red'><h1>TOKEN NOT GOOD</span></center>"          
     else:
         return "<center><span style='color:red'><h1>Something went wrong !</center>"    
